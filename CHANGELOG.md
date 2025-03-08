@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Alpha release : transform lib to a package (need refactoring at this stage to be usable and correspond to the package goal).
