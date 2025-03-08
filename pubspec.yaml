@@ -1,0 +1,24 @@
+name: data_store
+description: "A package that provide local and online data storage implementations, and synchronization options."
+version: 0.0.1
+homepage: https://github.com/bienvenuelisis/data_store
+repository: https://github.com/bienvenuelisis/data_store
+issue_tracker: https://github.com/bienvenuelisis/data_store/issues
+
+environment:
+  sdk: ^3.7.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  cloud_firestore: ^5.6.5
+  flutter:
+    sdk: flutter
+  localstore: ^1.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  generate: true
