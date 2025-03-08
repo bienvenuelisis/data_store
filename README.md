@@ -1,27 +1,94 @@
 # Data Store
 
-A package that provide local and online data storage implementations, and synchronization options.
+A package that provides local and online data storage implementations, and synchronization options.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Local data storage using Localstore
+- Online data storage using Firestore
+- Synchronization between local and online data stores
+- Error handling for both Localstore and Firestore operations
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To start using the `data_store` package, add it to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  data_store: latest
+```
+
+Then, run `flutter pub get` to install the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### Creating a Document
+
+To create a new document in a collection:
 
 ```dart
-const like = 'sample';
+import 'package:data_store/data_store.dart';
+
+void main() async {
+  final data = {'name': 'John Doe', 'age': 30};
+  final documentId = await DataStoreHelpers.createDocument('users', data);
+  print('Document created with ID: $documentId');
+}
 ```
 
-## Additional information
+### Updating a Document
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+To update an existing document:
+
+```dart
+import 'package:data_store/data_store.dart';
+
+void main() async {
+  final data = {'name': 'Jane Doe', 'age': 25};
+  await DataStoreHelpers.updateDocument('users', 'documentId', data);
+  print('Document updated');
+}
+```
+
+### Deleting a Document
+
+To delete a document:
+
+```dart
+import 'package:data_store/data_store.dart';
+
+void main() async {
+  await DataStoreHelpers.deleteDocument('users', 'documentId');
+  print('Document deleted');
+}
+```
+
+## Error Handling
+
+The package provides error handling for both Localstore and Firestore operations. For example, to handle errors when creating a document:
+
+```dart
+import 'package:data_store/data_store.dart';
+
+void main() async {
+  try {
+    final data = {'name': 'John Doe', 'age': 30};
+    final documentId = await DataStoreHelpers.createDocument('users', data);
+    print('Document created with ID: $documentId');
+  } catch (e) {
+    print('Error: $e');
+  }
+}
+```
+
+## Additional Information
+
+For more information, visit the [GitHub repository](https://github.com/bienvenuelisis/data_store.git).
+
+To contribute to the package, please open an issue or submit a pull request on the issue tracker.
+
+## License
+
+This package is licensed under the MIT License. See the [LICENSE](https://github.com/bienvenuelisis/data_store/blob/main/LICENSE) file for more information.
+
+**Feel free to customize this README further to suit **your needs.
