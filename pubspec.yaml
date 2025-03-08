@@ -1,4 +1,4 @@
-name: data_store
+name: data_store_impl
 description: "A package that provide local and online data storage implementations, and synchronization options."
 version: 0.0.1
 homepage: https://github.com/bienvenuelisis/data_store

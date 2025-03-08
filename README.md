@@ -11,11 +11,11 @@ A package that provides local and online data storage implementations, and synch
 
 ## Getting Started
 
-To start using the `data_store` package, add it to your `pubspec.yaml` file:
+To start using the `` package, add it to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  data_store: latest
+  : latest
 ```
 
 Then, run `flutter pub get` to install the package.
@@ -27,7 +27,7 @@ Then, run `flutter pub get` to install the package.
 To create a new document in a collection:
 
 ```dart
-import 'package:data_store/data_store.dart';
+import 'package:/.dart';
 
 void main() async {
   final data = {'name': 'John Doe', 'age': 30};
@@ -41,7 +41,7 @@ void main() async {
 To update an existing document:
 
 ```dart
-import 'package:data_store/data_store.dart';
+import 'package:/.dart';
 
 void main() async {
   final data = {'name': 'Jane Doe', 'age': 25};
@@ -55,7 +55,7 @@ void main() async {
 To delete a document:
 
 ```dart
-import 'package:data_store/data_store.dart';
+import 'package:/.dart';
 
 void main() async {
   await DataStoreHelpers.deleteDocument('users', 'documentId');
@@ -68,7 +68,7 @@ void main() async {
 The package provides error handling for both Localstore and Firestore operations. For example, to handle errors when creating a document:
 
 ```dart
-import 'package:data_store/data_store.dart';
+import 'package:/.dart';
 
 void main() async {
   try {
@@ -83,12 +83,12 @@ void main() async {
 
 ## Additional Information
 
-For more information, visit the [GitHub repository](https://github.com/bienvenuelisis/data_store.git).
+For more information, visit the [GitHub repository](https://github.com/bienvenuelisis/.git).
 
 To contribute to the package, please open an issue or submit a pull request on the issue tracker.
 
 ## License
 
-This package is licensed under the MIT License. See the [LICENSE](https://github.com/bienvenuelisis/data_store/blob/main/LICENSE) file for more information.
+This package is licensed under the MIT License. See the [LICENSE](https://github.com/bienvenuelisis//blob/main/LICENSE) file for more information.
 
 **Feel free to customize this README further to suit **your needs.
