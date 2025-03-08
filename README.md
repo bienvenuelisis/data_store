@@ -90,5 +90,3 @@ To contribute to the package, please open an issue or submit a pull request on t
 ## License
 
 This package is licensed under the MIT License. See the [LICENSE](https://github.com/bienvenuelisis//blob/main/LICENSE) file for more information.
-
-**Feel free to customize this README further to suit **your needs.

@@ -1,6 +1,7 @@
 ## 0.0.2
 
 * Change package name, from data_store to data_store_impl.
+* Update ReadMe.
 
 ## 0.0.1
 
