@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import '../commons/data_store_action.dart';
-import 'helpers.dart';
+import '../implementation/localstore/helpers.dart';
+import 'data_store_action.dart';
 
 const kDbLogActions = 'db_actions_logs';
 
-class LocalStoreLogger {
+class SyncStoreLogger {
   Future<DataStoreAction> add(
     String collectionName,
     Map<String, dynamic> data,
@@ -29,10 +29,7 @@ class LocalStoreLogger {
     return action;
   }
 
-  Future<void> delete(
-    String collectionName,
-    String documentId,
-  ) async {
+  Future<void> delete(String collectionName, String documentId) async {
     final action = DataStoreAction(
       type: DataStoreActionType.delete,
       at: DateTime.now(),
@@ -52,9 +49,7 @@ class LocalStoreLogger {
     List<Map<String, dynamic>> actions;
 
     if (collectionName == null) {
-      actions = await LocalstoreHelpers.getAll(
-        kDbLogActions,
-      );
+      actions = await LocalstoreHelpers.getAll(kDbLogActions);
     } else {
       actions = await LocalstoreHelpers.getAllWhere(
         kDbLogActions,
@@ -78,21 +73,10 @@ class LocalStoreLogger {
         null,
       );
     } else {
-      actions = await LocalstoreHelpers.getAllWheres(
-        kDbLogActions,
-        [
-          [
-            'collection_name',
-            '==',
-            collectionName,
-          ],
-          [
-            'synchronized_at',
-            '!=',
-            null,
-          ]
-        ],
-      );
+      actions = await LocalstoreHelpers.getAllWheres(kDbLogActions, [
+        ['collection_name', '==', collectionName],
+        ['synchronized_at', '!=', null],
+      ]);
     }
 
     return DataStoreAction.fromList(actions);
@@ -109,34 +93,19 @@ class LocalStoreLogger {
         null,
       );
     } else {
-      actions = await LocalstoreHelpers.getAllWheres(
-        kDbLogActions,
-        [
-          [
-            'collection_name',
-            '==',
-            collectionName,
-          ],
-          [
-            'synchronized_at',
-            '==',
-            null,
-          ]
-        ],
-      );
+      actions = await LocalstoreHelpers.getAllWheres(kDbLogActions, [
+        ['collection_name', '==', collectionName],
+        ['synchronized_at', '==', null],
+      ]);
     }
 
     return DataStoreAction.fromList(actions);
   }
 
   Future<void> sync(DataStoreAction action) async {
-    await LocalstoreHelpers.updateDocument(
-      kDbLogActions,
-      action.id,
-      {
-        'synchronized_at': DateTime.now().millisecondsSinceEpoch,
-      },
-    );
+    await LocalstoreHelpers.updateDocument(kDbLogActions, action.id, {
+      'synchronized_at': DateTime.now().millisecondsSinceEpoch,
+    });
   }
 
   Future<DataStoreAction> update(

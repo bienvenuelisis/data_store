@@ -1,11 +1,12 @@
 import 'dart:async';
 
-import '../firestore/index.dart';
-import '../localstore/index.dart';
+import '../implementation/firestore/index.dart';
+import '../implementation/localstore/index.dart';
 import 'data_store.dart';
 
 abstract class DatastoreModel<T> {
   String get collectionName;
+
   String? get id;
 
   Future<void> deleteLocal() async {

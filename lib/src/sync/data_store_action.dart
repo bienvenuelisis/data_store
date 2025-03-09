@@ -1,11 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-enum DataStoreActionType {
-  create,
-  delete,
-  update,
-}
+enum DataStoreActionType { create, delete, update }
 
 class DataStoreAction {
   DataStoreAction({
@@ -18,23 +14,24 @@ class DataStoreAction {
     this.synchronizedAt,
   });
 
-  factory DataStoreAction.fromJson(String source) => DataStoreAction.fromMap(
-        json.decode(source) as Map<String, dynamic>,
-      );
+  factory DataStoreAction.fromJson(String source) =>
+      DataStoreAction.fromMap(json.decode(source) as Map<String, dynamic>);
 
   factory DataStoreAction.fromMap(Map<String, dynamic> map) {
     return DataStoreAction(
       id: map['id'] as String,
       collectionName: (map['collection_name'] ?? '') as String,
       at: DateTime.fromMillisecondsSinceEpoch((map['at'] ?? 0) as int),
-      data: (map['data'] != null ? jsonDecode(map['data'] as String) : null)
-          as Map<String, dynamic>?,
+      data:
+          (map['data'] != null ? jsonDecode(map['data'] as String) : null)
+              as Map<String, dynamic>?,
       documentId: map['document_id'] as String,
-      synchronizedAt: map['synchronized_at'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(
-              (map['synchronized_at'] ?? 0) as int,
-            )
-          : null,
+      synchronizedAt:
+          map['synchronized_at'] != null
+              ? DateTime.fromMillisecondsSinceEpoch(
+                (map['synchronized_at'] ?? 0) as int,
+              )
+              : null,
       type: DataStoreActionType.values.byName(map['type'] as String),
     );
   }
@@ -50,11 +47,7 @@ class DataStoreAction {
   bool get synchronized => synchronizedAt != null;
 
   static List<DataStoreAction> fromList(List<Map<String, dynamic>> actions) {
-    return actions
-        .map(
-          DataStoreAction.fromMap,
-        )
-        .toList();
+    return actions.map(DataStoreAction.fromMap).toList();
   }
 
   String toJson() => json.encode(toMap());

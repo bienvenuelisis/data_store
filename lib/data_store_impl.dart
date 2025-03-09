@@ -2,6 +2,6 @@
 
 library;
 
-export './src/commons/index.dart';
-export './src/firestore/index.dart';
-export './src/localstore/index.dart';
+export 'src/implementation/firestore/index.dart';
+export 'src/implementation/localstore/index.dart';
+export 'src/sync/index.dart';

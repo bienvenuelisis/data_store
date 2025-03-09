@@ -3,6 +3,7 @@ import 'localstore_error.dart';
 
 abstract class LocalstoreModel<T> {
   String get collectionName;
+
   String? get id;
 
   Future<void> delete() async {

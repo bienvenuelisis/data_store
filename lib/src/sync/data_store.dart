@@ -4,8 +4,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../firestore/index.dart';
-import '../localstore/index.dart';
+import '../implementation/firestore/index.dart';
+import '../implementation/localstore/index.dart';
 import 'data_store_action.dart';
 
 // ignore: avoid_classes_with_only_static_members
@@ -54,7 +54,7 @@ class DataStoreHelpers {
     } on Exception catch (e) {
       debugPrint(e.toString());
 
-      await LocalStoreLogger().add(collectionName, data, finalId);
+      await SyncStoreLogger().add(collectionName, data, finalId);
     }
 
     return finalId;
@@ -88,7 +88,7 @@ class DataStoreHelpers {
     } on Exception catch (e) {
       debugPrint(e.toString());
 
-      await LocalStoreLogger().delete(collectionName, documentId);
+      await SyncStoreLogger().delete(collectionName, documentId);
     }
   }
 
@@ -303,7 +303,7 @@ class DataStoreHelpers {
     }
 
     try {
-      await LocalStoreLogger().sync(action);
+      await SyncStoreLogger().sync(action);
 
       return true;
     } catch (e) {
@@ -320,7 +320,7 @@ class DataStoreHelpers {
     T Function(Map<String, dynamic>) toModel,
   ) async {
     try {
-      final dataToSync = await LocalStoreLogger().getAllSynced(collectionName);
+      final dataToSync = await SyncStoreLogger().getAllSynced(collectionName);
 
       return dataToSync.map((e) => toModel(e.data!)).toList();
     } catch (e) {
@@ -360,7 +360,7 @@ class DataStoreHelpers {
     } on Exception catch (e) {
       debugPrint(e.toString());
 
-      await LocalStoreLogger().update(collectionName, documentId, data);
+      await SyncStoreLogger().update(collectionName, documentId, data);
     }
   }
 }

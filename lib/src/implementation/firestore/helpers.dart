@@ -26,14 +26,12 @@ class FirestoreHelpers {
       if (id != null) {
         docRef = FirebaseFirestore.instance.collection(collectionName).doc(id);
       } else {
-        docRef =
-            await FirebaseFirestore.instance.collection(collectionName).add({});
+        docRef = await FirebaseFirestore.instance
+            .collection(collectionName)
+            .add({});
       }
 
-      await docRef.set({
-        ...data,
-        'id': docRef.id,
-      });
+      await docRef.set({...data, 'id': docRef.id});
 
       return docRef.id;
     } on FirebaseException catch (error) {
@@ -54,8 +52,9 @@ class FirestoreHelpers {
     String documentId,
   ) async {
     try {
-      final DocumentReference document =
-          FirebaseFirestore.instance.collection(collectionName).doc(documentId);
+      final DocumentReference document = FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(documentId);
 
       await document.delete();
     } on FirebaseException catch (error) {
@@ -77,8 +76,8 @@ class FirestoreHelpers {
     String collectionName,
   ) async {
     try {
-      final CollectionReference collectionRef =
-          FirebaseFirestore.instance.collection(collectionName);
+      final CollectionReference collectionRef = FirebaseFirestore.instance
+          .collection(collectionName);
       final querySnapshot = await collectionRef.get();
 
       return querySnapshot.docs
@@ -110,8 +109,8 @@ class FirestoreHelpers {
     dynamic value,
   ) async {
     try {
-      final CollectionReference collectionRef =
-          FirebaseFirestore.instance.collection(collectionName);
+      final CollectionReference collectionRef = FirebaseFirestore.instance
+          .collection(collectionName);
       final query = _query(collectionRef, field, operator, value);
 
       final querySnapshot = await query.get();
@@ -143,8 +142,8 @@ class FirestoreHelpers {
     List<List<dynamic>> queries,
   ) async {
     try {
-      final CollectionReference collectionRef =
-          FirebaseFirestore.instance.collection(collectionName);
+      final CollectionReference collectionRef = FirebaseFirestore.instance
+          .collection(collectionName);
 
       Query queryRef = collectionRef;
 
@@ -177,8 +176,9 @@ class FirestoreHelpers {
     String documentId,
   ) async {
     try {
-      final DocumentReference docRef =
-          FirebaseFirestore.instance.collection(collectionName).doc(documentId);
+      final DocumentReference docRef = FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(documentId);
 
       final documentSnapshot = await docRef.get();
 
@@ -212,8 +212,9 @@ class FirestoreHelpers {
     Map<String, dynamic> data,
   ) async {
     try {
-      final DocumentReference document =
-          FirebaseFirestore.instance.collection(collectionName).doc(documentId);
+      final DocumentReference document = FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(documentId);
 
       await document.update(data);
     } on FirebaseException catch (error) {

@@ -3,6 +3,7 @@ import 'helpers.dart';
 
 abstract class FirestoreModel<T> {
   String get collectionName;
+
   String? get id;
 
   Future<void> delete() async {
