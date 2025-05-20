@@ -1,3 +1,8 @@
+## 0.0.3
+
+* Update ReadMe.
+* Use interface for data store, with local and remote implementations instead of static methods.
+
 ## 0.0.2
 
 * Change package name, from data_store to data_store_impl.
