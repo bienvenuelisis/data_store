@@ -1,4 +1,5 @@
 import 'package:data_store_impl/data_store_impl.dart';
+import 'package:data_store_impl/src/implementation/localstore/helpers.dart';
 import 'package:data_store_impl/src/interface/i_data_store.dart';
 
 class LocalDataStore extends IDataStore {
@@ -61,5 +62,10 @@ class LocalDataStore extends IDataStore {
     Map<String, dynamic> data,
   ) {
     return LocalstoreHelpers.updateDocument(collectionName, documentId, data);
+  }
+
+  @override
+  Future<bool> documentExists(String collectionName, String documentId) {
+    return LocalstoreHelpers.documentExists(collectionName, documentId);
   }
 }

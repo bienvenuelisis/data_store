@@ -1,5 +1,5 @@
 import 'package:data_store_impl/data_store_impl.dart';
-import 'package:data_store_impl/src/interface/i_data_store.dart';
+import 'package:data_store_impl/src/implementation/firestore/helpers.dart';
 
 class FirebaseDataStore extends IDataStore {
   const FirebaseDataStore() : super();
@@ -46,6 +46,11 @@ class FirebaseDataStore extends IDataStore {
     String documentId,
   ) {
     return FirestoreHelpers.getDocument(collectionName, documentId);
+  }
+
+  @override
+  Future<bool> documentExists(String collectionName, String documentId) {
+    return FirestoreHelpers.documentExists(collectionName, documentId);
   }
 
   @override

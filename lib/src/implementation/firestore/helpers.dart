@@ -62,6 +62,30 @@ class FirestoreHelpers {
     }
   }
 
+  /// Checks if a document exists in a Firestore collection.
+  ///
+  /// The [collectionName] parameter specifies the name of the collection to check.
+  /// The [documentId] parameter specifies the ID of the document to check.
+  ///
+  /// Returns a [Future] that completes with a boolean indicating whether the document exists.
+  ///
+  /// Throws a [FirestoreError] if there is an error checking for the document.
+  static Future<bool> documentExists(
+    String collectionName,
+    String documentId,
+  ) async {
+    try {
+      final DocumentReference document = FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(documentId);
+
+      final snapshot = await document.get();
+      return snapshot.exists;
+    } on FirebaseException catch (error) {
+      throw FirestoreError(getFirestoreErrorMessage(error));
+    }
+  }
+
   /// Retrieves all documents from a Firestore collection.
   ///
   /// The [collectionName] parameter specifies the name of the collection to retrieve the documents from.

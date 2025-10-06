@@ -316,4 +316,21 @@ class LocalstoreHelpers {
         return initialQuery;
     }
   }
+
+  static Future<bool> documentExists(
+    String collectionName,
+    String documentId,
+  ) async {
+    try {
+      final docRef = Localstore.instance
+          .collection(collectionName)
+          .doc(documentId);
+
+      final document = await docRef.get();
+
+      return document != null;
+    } on Exception catch (error) {
+      throw LocalstoreError(error.toString());
+    }
+  }
 }

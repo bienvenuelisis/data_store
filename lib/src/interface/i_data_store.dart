@@ -26,6 +26,12 @@ abstract class IDataStore {
   /// Throws an [Exception] if there is an error deleting the document.
   Future<void> deleteDocument(String collectionName, String documentId);
 
+  /// Checks if a document exists in a collection.
+  ///
+  /// The [collectionName] parameter specifies the name of the collection to check.
+  /// The [documentId] parameter specifies the ID of the document to check.
+  Future<bool> documentExists(String collectionName, String documentId);
+
   /// Retrieves all documents from a collection.
   ///
   /// The [collectionName] parameter specifies the name of the collection to retrieve the documents from.
@@ -92,7 +98,6 @@ abstract class IDataStore {
     String documentId,
   );
 
-  /// Updates a document in a collection.
   ///
   /// The [collectionName] parameter specifies the name of the collection to update the document in.
   /// The [documentId] parameter specifies the ID of the document to update.

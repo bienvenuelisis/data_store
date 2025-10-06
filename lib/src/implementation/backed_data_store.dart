@@ -378,4 +378,13 @@ class BackedDataStore extends IDataStore {
       await SyncStoreLogger().update(collectionName, documentId, data);
     }
   }
+
+  @override
+  Future<bool> documentExists(String collectionName, String documentId) {
+    try {
+      return _onlineStore.documentExists(collectionName, documentId);
+    } catch (e) {
+      return _offlineStore.documentExists(collectionName, documentId);
+    }
+  }
 }
